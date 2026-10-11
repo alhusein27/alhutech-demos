@@ -2,14 +2,16 @@
 
 import { useMemo, useState } from "react";
 import type { DemoContent, Listing } from "@/content/types";
-import { waLink } from "@/lib/whatsapp";
+import { leadWhatsAppUrl, demoLeadMessage } from "@/lib/lead";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 
 type SortKey = "featured" | "low" | "high";
 
 function ListingCard({ content, listing }: { content: DemoContent; listing: Listing }) {
-  const href = waLink(content.whatsapp, `Hello ${content.businessName}! I'm interested in: ${listing.name} (${listing.price}).`);
+  const href = leadWhatsAppUrl(
+    demoLeadMessage(content.businessName, content.slug, `${listing.name} (${listing.price})`)
+  );
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition hover:shadow-lg">
       <div

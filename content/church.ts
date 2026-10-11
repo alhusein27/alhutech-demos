@@ -6,7 +6,6 @@ export const churchContent: DemoContent = {
   tagline: "Adenta · Accra — A place to belong",
   location: "Adenta, Accra",
   phoneDisplay: "+233 30 211 2233",
-  whatsapp: "233500000000",
   heroTitle: "Come as you are. Leave transformed.",
   heroSubtitle:
     "Join us this Sunday at Grace Covenant Chapel — heartfelt worship, a practical word, and a family waiting to welcome you.",

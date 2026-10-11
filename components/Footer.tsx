@@ -1,4 +1,5 @@
 import type { DemoContent } from "@/content/types";
+import { ALHUTECH_WHATSAPP } from "@/lib/lead";
 
 export default function Footer({ content }: { content: DemoContent }) {
   const year = new Date().getFullYear();
@@ -14,7 +15,7 @@ export default function Footer({ content }: { content: DemoContent }) {
               <br />
               {content.hoursLines.join(" · ")}
               <br />
-              <a href={`tel:+${content.whatsapp}`} className="underline underline-offset-4 hover:text-white">
+              <a href={`tel:+${ALHUTECH_WHATSAPP}`} className="underline underline-offset-4 hover:text-white">
                 {content.phoneDisplay}
               </a>
             </p>

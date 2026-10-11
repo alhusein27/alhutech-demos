@@ -1,14 +1,14 @@
 import type { DemoContent } from "@/content/types";
-import { waLink } from "@/lib/whatsapp";
+import { leadWhatsAppUrl, demoLeadMessage } from "@/lib/lead";
 
 export default function WhatsAppFloat({ content }: { content: DemoContent }) {
-  const href = waLink(content.whatsapp, `Hello ${content.businessName}!`);
+  const href = leadWhatsAppUrl(demoLeadMessage(content.businessName, content.slug));
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`Chat with ${content.businessName} on WhatsApp`}
+      aria-label="Chat with Alhutech on WhatsApp"
       className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-xl transition hover:scale-105"
     >
       <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">

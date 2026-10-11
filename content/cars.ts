@@ -6,7 +6,6 @@ export const carsContent: DemoContent = {
   tagline: "Abossey Okai · Accra",
   location: "Abossey Okai, Accra",
   phoneDisplay: "+233 24 499 8877",
-  whatsapp: "233500000000",
   heroTitle: "No stories — just good cars.",
   heroSubtitle:
     "Inspected, serviced and warranted vehicles plus genuine spare parts — from Accra's most trusted auto yard.",

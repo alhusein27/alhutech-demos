@@ -6,7 +6,6 @@ export const lawfirmContent: DemoContent = {
   tagline: "Ridge · Accra — Est. 2008",
   location: "Ridge, Accra",
   phoneDisplay: "+233 30 266 5544",
-  whatsapp: "233500000000",
   heroTitle: "Counsel you can confide in.",
   heroSubtitle:
     "A full-service Ghanaian law firm in Ridge, Accra — guiding individuals, families and businesses through their most important matters for nearly two decades.",

@@ -6,7 +6,6 @@ export const clinicContent: DemoContent = {
   tagline: "East Legon · Accra",
   location: "East Legon, Accra",
   phoneDisplay: "+233 30 277 8899",
-  whatsapp: "233500000000",
   heroTitle: "Dentistry without the dread.",
   heroSubtitle:
     "Modern, gentle dental care in East Legon — digital X-rays, quiet equipment, and dentists who explain everything before they begin.",

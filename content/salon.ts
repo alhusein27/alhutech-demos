@@ -6,7 +6,6 @@ export const salonContent: DemoContent = {
   tagline: "East Legon · Accra",
   location: "East Legon, Accra",
   phoneDisplay: "+233 55 123 4567",
-  whatsapp: "233500000000",
   heroTitle: "Look Stunning. Feel Unstoppable.",
   heroSubtitle:
     "Accra's home for flawless frontal installs, silk presses, braids, nails and glam makeup — all under one roof.",

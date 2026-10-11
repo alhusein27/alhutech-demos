@@ -6,7 +6,6 @@ export const schoolContent: DemoContent = {
   tagline: "Spintex · Accra — Crèche to JHS",
   location: "Spintex, Accra",
   phoneDisplay: "+233 30 333 4455",
-  whatsapp: "233500000000",
   heroTitle: "Where bright futures begin.",
   heroSubtitle:
     "A nurturing, high-achieving school in Spintex — small classes, strong values, and results parents can see.",

@@ -86,7 +86,6 @@ export interface DemoContent {
   tagline: string; // hero kicker, e.g. "Osu · Accra"
   location: string;
   phoneDisplay: string;
-  whatsapp: string; // numeric, e.g. "233500000000"
   heroTitle: string;
   heroSubtitle: string;
   ctaPrimary: string;

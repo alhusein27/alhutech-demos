@@ -3,4 +3,7 @@ node_modules
 out
 *.log
 .DS_Store
+
+# Local-only / build debris (never committed)
 public/videos/staging/
+voiceovers/backups/

@@ -1,5 +1,5 @@
 import type { DemoContent } from "@/content/types";
-import { waLink } from "@/lib/whatsapp";
+import { leadWhatsAppUrl, demoLeadMessage } from "@/lib/lead";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 
@@ -19,9 +19,12 @@ export default function ServicesGrid({ content }: { content: DemoContent }) {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {content.services.map((service, i) => {
             const action = service.actionLabel ?? "Enquire";
-            const href = waLink(
-              content.whatsapp,
-              `Hello ${content.businessName}! I'd like to ${action.toLowerCase()}: ${service.title}${service.price ? ` (${service.price})` : ""}.`
+            const href = leadWhatsAppUrl(
+              demoLeadMessage(
+                content.businessName,
+                content.slug,
+                `${action}: ${service.title}${service.price ? ` (${service.price})` : ""}`
+              )
             );
             return (
               <Reveal key={service.title} delay={(i % 3) * 90}>

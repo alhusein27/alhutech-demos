@@ -6,7 +6,6 @@ export const realestateContent: DemoContent = {
   tagline: "Cantonments · Accra",
   location: "Cantonments, Accra",
   phoneDisplay: "+233 30 244 5566",
-  whatsapp: "233500000000",
   heroTitle: "Find a place you'll love to live.",
   heroSubtitle:
     "Verified apartments, houses, land and office space across Accra — with agents who actually pick up the phone.",

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { DemoContent } from "@/content/types";
-import { waLink } from "@/lib/whatsapp";
+import { leadWhatsAppUrl, demoLeadMessage } from "@/lib/lead";
 
 interface HeaderProps {
   content: DemoContent;
@@ -12,7 +12,7 @@ interface HeaderProps {
 
 export default function Header({ content, nav, topOffset = false }: HeaderProps) {
   const [open, setOpen] = useState(false);
-  const ctaHref = waLink(content.whatsapp, `Hello ${content.businessName}!`);
+  const ctaHref = leadWhatsAppUrl(demoLeadMessage(content.businessName, content.slug));
 
   return (
     <header className={`sticky ${topOffset ? "top-10" : "top-0"} z-50 bg-white/95 backdrop-blur border-b border-slate-100 shadow-[0_1px_12px_rgba(0,0,0,0.04)]`}>

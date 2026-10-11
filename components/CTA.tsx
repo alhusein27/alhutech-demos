@@ -1,9 +1,9 @@
 import type { DemoContent } from "@/content/types";
-import { waLink } from "@/lib/whatsapp";
+import { leadWhatsAppUrl, demoLeadMessage } from "@/lib/lead";
 import Reveal from "./Reveal";
 
 export default function CTA({ content }: { content: DemoContent }) {
-  const href = waLink(content.whatsapp, `Hello ${content.businessName}!`);
+  const href = leadWhatsAppUrl(demoLeadMessage(content.businessName, content.slug));
   return (
     <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { DemoContent, FormField } from "@/content/types";
-import { waLink } from "@/lib/whatsapp";
+import { leadWhatsAppUrl, demoLeadMessage } from "@/lib/lead";
 
 const inputClass =
   "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none";
@@ -71,8 +71,8 @@ export default function BookingForm({ content }: { content: DemoContent }) {
       .map((f) => ({ label: f.label, value: (values[f.label] ?? "").trim() }))
       .filter((entry) => entry.value)
       .map((entry) => `${entry.label}: ${entry.value}`);
-    const message = `Hello ${content.businessName}! ${form.title}:\n${lines.join("\n")}`;
-    window.open(waLink(content.whatsapp, message), "_blank", "noopener");
+    const message = demoLeadMessage(content.businessName, content.slug, `${form.title} — ${lines.join(", ")}`);
+    window.open(leadWhatsAppUrl(message), "_blank", "noopener");
   };
 
   return (

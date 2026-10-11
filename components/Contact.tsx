@@ -1,10 +1,10 @@
 import type { DemoContent } from "@/content/types";
-import { waLink } from "@/lib/whatsapp";
+import { leadWhatsAppUrl, demoLeadMessage, ALHUTECH_WHATSAPP } from "@/lib/lead";
 import BookingForm from "./BookingForm";
 import Reveal from "./Reveal";
 
 export default function Contact({ content }: { content: DemoContent }) {
-  const telHref = `tel:+${content.whatsapp}`;
+  const telHref = `tel:+${ALHUTECH_WHATSAPP}`;
   return (
     <section id="contact" className="scroll-mt-20 bg-white py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -66,7 +66,7 @@ export default function Contact({ content }: { content: DemoContent }) {
                 <h3 className="text-xl font-bold text-slate-900">Get in touch</h3>
                 <p className="mt-2 text-slate-600">Message us on WhatsApp — we reply fast.</p>
                 <a
-                  href={waLink(content.whatsapp, `Hello ${content.businessName}!`)}
+                  href={leadWhatsAppUrl(demoLeadMessage(content.businessName, content.slug))}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-accent mt-6 inline-block rounded-full px-8 py-3.5 font-semibold text-white shadow-md hover:opacity-90 transition"

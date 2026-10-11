@@ -6,7 +6,6 @@ export const fashionContent: DemoContent = {
   tagline: "Osu · Accra · Est. 2019",
   location: "Osu, Accra",
   phoneDisplay: "+233 50 000 0000",
-  whatsapp: "233500000000",
   heroTitle: "Wear Ghana. Own Every Room.",
   heroSubtitle:
     "Modern kente gowns, two-piece sets and kaftans — designed in Accra, sewn to turn heads at every wedding, naming ceremony and Friday night out.",

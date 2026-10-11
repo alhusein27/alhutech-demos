@@ -6,7 +6,6 @@ export const restaurantContent: DemoContent = {
   tagline: "Osu · Accra",
   location: "Osu, Accra",
   phoneDisplay: "+233 24 455 6677",
-  whatsapp: "233500000000",
   heroTitle: "Real Ghanaian food, made like home.",
   heroSubtitle:
     "From smoky waakye to charcoal-grilled tilapia — cooked fresh every single day at Mama Esi's Kitchen.",

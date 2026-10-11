@@ -6,7 +6,6 @@ export const bakeryContent: DemoContent = {
   tagline: "Osu · Accra · Baked fresh daily",
   location: "Osu, Accra",
   phoneDisplay: "+233 50 000 0000",
-  whatsapp: "233500000000",
   heroTitle: "Cakes & pastries worth celebrating.",
   heroSubtitle:
     "Fresh cakes, pastries and breads baked every morning in Osu, Accra. Order on WhatsApp, pay with MTN MoMo.",

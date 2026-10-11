@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { DemoContent, HeroSlide } from "@/content/types";
-import { waLink } from "@/lib/whatsapp";
+import { leadWhatsAppUrl, demoLeadMessage } from "@/lib/lead";
 
 const AUTOPLAY_MS = 6000;
 const SWIPE_THRESHOLD_PX = 40;
@@ -32,16 +32,36 @@ export default function HeroSlider({ content }: { content: DemoContent }) {
   const [hoverPaused, setHoverPaused] = useState(false);
   const [tabHidden, setTabHidden] = useState(false);
   const [videoOk, setVideoOk] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
   const touchStartX = useRef<number | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  /** Flip the video element's muted property directly (no restart of playback). */
+  const setMutedState = useCallback((muted: boolean) => {
+    setIsMuted(muted);
+    if (videoRef.current) videoRef.current.muted = muted;
+  }, []);
 
   const go = useCallback(
-    (i: number) => setIndex(((i % slides.length) + slides.length) % slides.length),
-    [slides.length]
+    (i: number) => {
+      // Narration belongs to the video slide — re-mute when leaving it.
+      setMutedState(true);
+      setIndex(((i % slides.length) + slides.length) % slides.length);
+    },
+    [slides.length, setMutedState]
   );
   const prev = useCallback(() => go(index - 1), [go, index]);
   const next = useCallback(() => go(index + 1), [go, index]);
 
-  const autoplay = !hoverPaused && !tabHidden && slides.length > 1;
+  const toggleMute = useCallback(() => {
+    const next = !isMuted;
+    setMutedState(next);
+    if (!next) videoRef.current?.play().catch(() => {});
+  }, [isMuted, setMutedState]);
+
+  // Pause autoplay while the narration is audible so the slide (and its
+  // voiceover) never change mid-sentence.
+  const autoplay = !hoverPaused && !tabHidden && slides.length > 1 && isMuted;
   useEffect(() => {
     if (!autoplay) return;
     const id = window.setInterval(() => setIndex((i) => (i + 1) % slides.length), AUTOPLAY_MS);
@@ -54,7 +74,7 @@ export default function HeroSlider({ content }: { content: DemoContent }) {
     return () => document.removeEventListener("visibilitychange", onVisibility);
   }, []);
 
-  const primaryHref = waLink(content.whatsapp, `Hello ${content.businessName}!`);
+  const primaryHref = leadWhatsAppUrl(demoLeadMessage(content.businessName, content.slug));
   const secondaryHref = content.ctaSecondaryHref ?? "#services";
   const active = slides[index];
 
@@ -98,6 +118,7 @@ export default function HeroSlider({ content }: { content: DemoContent }) {
             />
             {i === 0 && slide.video && videoOk && (
               <video
+                ref={videoRef}
                 className="absolute inset-0 h-full w-full object-cover"
                 autoPlay
                 muted
@@ -203,6 +224,43 @@ export default function HeroSlider({ content }: { content: DemoContent }) {
               />
             ))}
           </div>
+        </>
+      )}
+      {/* Mute / unmute toggle for the narrated hero video (slide 1).
+          Videos must autoplay muted (browser policy); visitors tap to hear
+          the narration. Playback is never restarted by the toggle. */}
+      {index === 0 && slides[0].video && videoOk && (
+        <>
+          {isMuted && (
+            <span className="pointer-events-none absolute bottom-[4.9rem] left-4 z-30 rounded-full bg-black/50 px-3 py-1 text-xs font-medium text-white/90 backdrop-blur sm:left-6">
+              Tap for narration
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={toggleMute}
+            aria-label={isMuted ? "Unmute narration" : "Mute narration"}
+            aria-pressed={!isMuted}
+            className={`absolute bottom-6 left-4 z-30 grid h-11 w-11 place-items-center rounded-full border backdrop-blur transition sm:left-6 ${
+              isMuted
+                ? "border-white/30 bg-black/30 text-white hover:bg-black/60"
+                : "border-[#D9A419] bg-[#D9A419] text-black shadow-lg hover:brightness-105"
+            }`}
+          >
+            {isMuted ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <line x1="23" y1="9" x2="17" y2="15" />
+                <line x1="17" y1="9" x2="23" y2="15" />
+              </svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+              </svg>
+            )}
+          </button>
         </>
       )}
     </section>
