@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Sora — self-hosted (copied from alhutech.com build), system-ui fallback */
+@font-face {
+  font-family: "Sora";
+  src: url("/fonts/sora-latin.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+::selection {
+  background: #d9a419;
+  color: #06231b;
+}
+
+/* Per-demo accent variables (set inline by DemoPage) */
+.kicker-accent {
+  color: var(--accent-from);
+}
+.text-accent {
+  color: var(--accent-from);
+}
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+}
+.accent-soft {
+  background: color-mix(in srgb, var(--accent-from) 10%, white);
+}
+.accent-border {
+  border-color: var(--accent-from);
+}
+
+/* Scroll-reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero slider — slow Ken Burns zoom on the active background */
+@keyframes hero-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+.hero-kenburns {
+  animation: hero-kenburns 7s ease-out forwards;
+}
+
+/* Hero slider — staggered entrance for copy on each slide change */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-rise {
+  animation: hero-rise 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-kenburns,
+  .hero-rise {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
